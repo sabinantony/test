@@ -1,0 +1,840 @@
+/*reset*/
+@import "compass/css3";
+
+@import "variables.scss";
+@import "mixins.scss";
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+/* iPad Input Shadows */
+input[type="text"], input[type="email"], input[type="search"], input[type="password"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    /* mobile firefox too! */
+}
+
+/*site*/
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+    min-width: $mobileBreakpoint;
+    background: $pageBackground;
+    font-family: $pageFont;
+    font-size: $fontSize;
+    line-height: $lineHeight;
+    color: $black;
+
+    @include font-smoothing(on);
+}
+
+::-webkit-selection {
+    background-color: $highlightBackground;
+    color: $highlightColor;
+}
+
+::-moz-selection {
+    background-color: $highlightBackground;
+    color: $highlightColor;
+}
+
+::selection {
+    background-color: $highlightBackground;
+    color: $highlightColor;
+}
+
+textarea::-webkit-selection,
+input::-webkit-selection {
+    background-color: $inputHighlightBackground;
+    color: $inputHighlightColor;
+}
+
+textarea::-moz-selection,
+input::-moz-selection {
+    background-color: $inputHighlightBackground;
+    color: $inputHighlightColor;
+}
+
+textarea::selection,
+input::selection {
+    background-color: $inputHighlightBackground;
+    color: $inputHighlightColor;
+}
+
+*[class*="left aligned"] {
+    text-align: left;
+}
+
+*[class*="center aligned"] {
+    text-align: center;
+}
+
+*[class*="right aligned"] {
+    text-align: right;
+}
+
+.ui[class*="center"] {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ui[class*="container"] {
+    height: 100%;
+}
+
+*[class*="fluid"] {
+    width: 100%;
+}
+
+.ui[class*="tabular menu"] {
+    a {
+        float: $left;
+        position: relative;
+        display: block;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        padding: 0 20px;
+
+        &.active {
+            font-family: $primaryFontBold;
+
+            &:after {
+                position: absolute;
+                height: 4px;
+                width: 100%;
+                bottom: 0;
+                left: 0;
+                font-weight: bold;
+                content: '';
+                display: inline-block;
+            }
+        }
+    }
+
+    &.black {
+        background-color: $black;
+
+        a {
+            color: lighten($black, 50%);
+
+            &:hover {
+                color: $secondaryColor;
+            }
+
+            &:after {
+                background-color: $secondaryColor;
+            }
+
+            &.active {
+                color: $secondaryColor;
+            }
+        }
+    }
+}
+
+input[class*="inputfield"] {
+    font-size: 100%;
+    font-size: inherit;
+    border: 1px solid lighten($black, 80%);
+    line-height: 18px;
+
+    @include border-radius(3px);
+
+    padding: 6px 8px;
+    background-color: $white;
+
+    &:focus {
+        border-color: $secondaryColor;
+
+        @include box-shadow(0 0 0 0 #ccc inset);
+    }
+}
+
+/* default reset*/
+* {
+    outline: none;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: $linkColor;
+    cursor: pointer;
+}
+
+.clearfix {
+    clear: both;
+
+    &:after {
+        content: '';
+        display: block;
+        height: 0;
+        visibility: hidden;
+        clear: both;
+    }
+}
+
+.relative {
+    position: relative;
+}
+
+.fixed {
+    position: fixed;
+}
+
+*[class*="left floated"] {
+    float: $left;
+}
+
+*[class*="right floated"] {
+    float: $right;
+}
+
+.button {
+    text-align: center;
+
+    @include border-radius(3px);
+
+    border: 1px solid;
+    cursor: pointer;
+    min-height: 30px;
+    padding: 0 12px;
+    font-size: 12px;
+    font-family: $primaryFontBold;
+}
+
+.button[class*="yellow"] {
+    background-color: $secondaryColor;
+    color: $black;
+    border-color: $secondaryColor;
+
+    &:hover {
+        background-color: lighten($secondaryColor, 10%);
+        border-color: lighten($secondaryColor, 10%);
+    }
+}
+
+.button[class*="gray"] {
+    background-color: lighten($black, 50%);
+    color: $white;
+    border-color: lighten($black, 50%);
+
+    &:hover {
+        background-color: lighten($black, 40%);
+    }
+}
+
+.button[class*="padding"] {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.transition.slide.in, .transition[class*="slide down"].in {
+    @include transform-origin(top center);
+
+    @include animation-name(slideInY);
+}
+
+.ui[class*="dropdown"] {
+    &.active {
+        border-color: $secondaryColor !important;
+
+        @include box-shadow(0 2px 3px 0 #ccc);
+
+        border-bottom: 0;
+
+        @include border-radius(3px 3px 0 0);
+
+        .menu {
+            border-color: $secondaryColor !important;
+
+            @include box-shadow(0 2px 3px 0 #ccc);
+
+            border-top: 0;
+        }
+    }
+
+    .filtered {
+        &.text {
+            visibility: hidden;
+        }
+
+        &.item {
+            display: none;
+        }
+    }
+
+    > input.search {
+        background: none !important;
+        border: none !important;
+        box-shadow: none !important;
+        cursor: text;
+        top: 0;
+        left: 1px;
+        width: 100%;
+        outline: 0;
+        position: absolute;
+        z-index: 2;
+        font-family: $primaryFontBold;
+        font-size: inherit;
+        padding: 5px 26px 5px 8px;
+
+        &:focus + .text {
+            color: lighten($black, 85%);
+        }
+    }
+
+    > select {
+        display: none;
+    }
+
+    > input:not(.search):first-child {
+        display: none;
+    }
+
+    padding: 8px 26px 8px 8px;
+    position: relative;
+    border: 1px solid lighten($black, 80%);
+
+    @include border-radius(3px);
+
+    background-color: $white;
+    cursor: pointer;
+    word-wrap: break-word;
+    line-height: 1em;
+    white-space: normal;
+    outline: 0;
+    display: inline-block;
+
+    > .icon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: auto;
+        height: auto;
+        padding: 0 8px;
+
+        @include border-radius(3px);
+
+        &:before {
+            content: '\f0d7';
+            font-family: $fontAwesome;
+            font-size: 14px;
+            color: $black;
+            right: 0;
+            width: 8px;
+            height: 8px;
+            position: absolute;
+            top: 0;
+            right: 10px;
+            bottom: 0;
+            margin: auto;
+            line-height: 8px;
+        }
+    }
+
+    .text {
+        display: inline-block;
+
+        &.default {
+            color: lighten($black, 70%);
+        }
+    }
+
+    .menu {
+        overflow-x: hidden;
+        overflow-y: auto;
+        outline: 0;
+        margin: 0 -1px;
+        cursor: auto;
+        position: absolute;
+        display: none;
+        top: 100%;
+        left: 0;
+        min-width: calc(100% + 2px);
+        width: calc(100%+2px);
+        max-height: 16.02857143rem;
+
+        @include border-radius(0 0 3px 3px);
+
+        border: 1px solid lighten($black, 85%);
+        background-color: $white;
+        z-index: 1;
+
+        * {
+            white-space: nowrap;
+        }
+    }
+
+    .item {
+        position: relative;
+        cursor: pointer;
+        display: block;
+        border: none;
+        height: auto;
+        text-align: left;
+        border-top: none;
+        padding: 8px;
+        line-height: normal;
+        border-top: 1px solid lighten($black, 99%);
+
+        &:hover {
+            background-color: lighten($black, 97%);
+        }
+    }
+
+    .message:not(.ui) {
+        padding: 8px;
+        color: lighten($black, 85%);
+    }
+
+    .active {
+        background-color: lighten($black, 95%);
+    }
+}
+
+.item[class*="checkbox"] {
+    padding: 6px 0;
+
+    input[type="checkbox"] {
+        display: none;
+    }
+
+    .item {
+        padding: 12px 0 0 12px;
+
+        + .item {
+            padding: 6px 0 6px 12px;
+        }
+    }
+
+    label {
+        display: block;
+        padding-left: 18px;
+        position: relative;
+
+        &:before {
+            width: 12px;
+            height: 12px;
+            background-color: $white;
+            border: 1px solid lighten($black, 80%);
+
+            @include border-radius(3px);
+
+            margin-right: 2px;
+            display: inline-block;
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 0;
+        }
+    }
+
+    input[type="checkbox"]:checked + label {
+        &:before {
+            display: none;
+        }
+
+        color: $secondaryColor;
+        font-family: $primaryFontSemiBold;
+
+        &:after {
+            content: '\f14a';
+            font-family: $fontAwesome;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    }
+}
+
+.devider {
+    border-style: solid;
+
+    &[class*="top"] {
+        border-top-width: 1px;
+    }
+
+    &[class*="right"] {
+        border-right-width: 1px;
+    }
+
+    &[class*="bottom"] {
+        border-bottom-width: 1px;
+    }
+
+    &[class*="left"] {
+        border-left-width: 1px;
+    }
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+/*media query*/
+.mobile-only {
+    display: none;
+
+    @include breakpoint(mobile) {
+        display: block;
+    }
+}
+
+.tablet-only {
+    display: none;
+
+    @include breakpoint(tablet) {
+        display: block;
+    }
+}
+
+.computer-only {
+    display: none;
+
+    @include breakpoint(computer) {
+        display: block;
+    }
+}
+
+.largeMonitor-only {
+    display: none;
+
+    @include breakpoint(largeMonitor) {
+        display: block;
+    }
+}
+
+.widescreenMonitor-only {
+    display: none;
+
+    @include breakpoint(widescreenMonitor) {
+        display: block;
+    }
+}
+
+.row[class*="grid"] {
+    margin: 0 -5px;
+
+    .column {
+        float: $left;
+        padding: 5px;
+
+        &[class*="no floated"] {
+            float: none;
+        }
+
+        &:not(.holder) {
+            background-color: $white;
+
+            @include border-radius(3px);
+
+            border: 1px solid lighten($black, 85%);
+            padding: 15px;
+            width: 100%;
+        }
+    }
+
+    .column[class*="one"] {
+        width: 100%;
+    }
+
+    .column[class*="two"] {
+        width: 50%;
+    }
+
+    .column[class*="three"] {
+        width: 33.3%;
+    }
+}
+
+.ui.message {
+    position: relative;
+    padding: 8px 12px;
+
+    @include transition(opacity 0.1s);
+
+    @include border-radius(3px);
+
+    border: 1px solid lighten($black, 85%);
+    background-color: lighten($black, 97%);
+
+    &.info {
+        border-color: lighten($info, 41%);
+        background-color: lighten($info, 64%);
+        color: $info;
+    }
+
+    &.error {
+        border-color: lighten($error, 41%);
+        background-color: lighten($error, 55%);
+        color: $error;
+    }
+
+    &.success {
+        border-color: lighten($success, 41%);
+        background-color: lighten($success, 64%);
+        color: $success;
+    }
+
+    &.warning {
+        border-color: lighten($warning, 41%);
+        background-color: lighten($warning, 70%);
+        color: $warning;
+    }
+}
+
+.ui[class*="table"] {
+    background-color: $white;
+    width: 100%;
+
+    @include border-radius(3px);
+
+    border: 1px solid lighten($black, 88%);
+    border-collapse: initial;
+
+    th, td {
+        padding: 8px 10px;
+    }
+
+    .chart[class*="indicator"] {
+        &:before {
+            content: '';
+            display: inline-block;
+            height: 8px;
+            width: 10px;
+            display: inline-block;
+
+            @include border-radius(3px);
+
+            margin: 0 5px 0 0;
+        }
+
+        &.green {
+            &:before {
+                background-color: lighten(green, 10%);
+            }
+
+            span {
+                color: lighten(green, 10%);
+            }
+        }
+
+        &.red {
+            &:before {
+                background-color: lighten(red, 15%);
+            }
+
+            span {
+                color: lighten(red, 15%);
+            }
+        }
+
+        &.gray {
+            &:before {
+                background-color: lighten($black, 60%);
+            }
+
+            span {
+                color: lighten($black, 50%);
+            }
+        }
+    }
+
+    thead {
+        background-color: lighten($black, 90%);
+        font-family: $primaryFontBold;
+    }
+
+    .subhead {
+        background-color: lighten($black, 96%);
+        color: lighten($black, 50%);
+    }
+
+    tbody {
+        td {
+            border-top: 1px solid lighten($black, 95%);
+        }
+
+        tr:nth-child(2n) {
+            background-color: lighten($black, 98%);
+        }
+
+        tr:hover {
+            background-color: lighten($black, 98%);
+        }
+    }
+}
+
+/*multiple tags*/
+.ui.multiple.dropdown {
+    > .label {
+        display: inline-block;
+        background-color: $white;
+        border: 1px solid lighten($black, 80%);
+        padding: 6px 8px;
+        white-space: nowrap;
+        margin: 2px;
+        cursor: default;
+
+        @include transition(all, ease-in-out 0.5s);
+
+        @include border-radius(3px);
+
+        .delete.icon {
+            display: inline-block;
+            float: $right;
+            color: lighten($black, 75%);
+            cursor: pointer;
+
+            @include border-radius(3px);
+
+            &:before {
+                content: '\f00d';
+                display: inline-block;
+                font-family: $fontAwesome;
+                margin-left: 8px;
+            }
+        }
+
+        ~ .text {
+            display: none;
+        }
+
+        &:hover {
+            background-color: lighten($black, 95%);
+
+            .delete.icon {
+                &:before {
+                    color: $secondaryColor;
+                }
+            }
+        }
+    }
+
+    > input.search {
+        position: static;
+        max-width: 100%;
+        width: 70px;
+        padding: 0;
+        margin: 0 12px 0 2px;
+    }
+
+    .text {
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding: 9px;
+    }
+
+    span.sizer {
+        display: none;
+    }
+}
+
+.input[class*="search"] {
+    display: inline-block;
+    margin: 2px;
+    position: relative;
+
+    input {
+        padding-right: 22px;
+    }
+
+    .icon:not(.ui) {
+        position: absolute;
+        top: 0;
+        right: 8px;
+        bottom: 0;
+        margin: auto;
+        width: 12px;
+        height: 16px;
+
+        &:before {
+            content: '\f002';
+            display: inline-block;
+            font-family: $fontAwesome;
+            color: lighten($black, 80%);
+        }
+    }
+}
+
+.transition.slide.out, .transition[class*="slide down"].out {
+    -webkit-animation-name: slideOutY;
+    animation-name: slideOutY;
+    -webkit-transform-origin: top center;
+    -ms-transform-origin: top center;
+    transform-origin: top center;
+}
+
+.transition[class*="slide up"].out {
+    -webkit-animation-name: slideOutY;
+    animation-name: slideOutY;
+    -webkit-transform-origin: bottom center;
+    -ms-transform-origin: bottom center;
+    transform-origin: bottom center;
+}
+
+.transition[class*="slide left"].out {
+    -webkit-animation-name: slideOutX;
+    animation-name: slideOutX;
+    -webkit-transform-origin: center right;
+    -ms-transform-origin: center right;
+    transform-origin: center right;
+}
+
+.transition[class*="slide right"].out {
+    -webkit-animation-name: slideOutX;
+    animation-name: slideOutX;
+    -webkit-transform-origin: center left;
+    -ms-transform-origin: center left;
+    transform-origin: center left;
+}
+
+@keyframes slideInY {
+    0% {
+        opacity: 0;
+        -webkit-transform: scaleY(0);
+        transform: scaleY(0);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: scaleY(1);
+        transform: scaleY(1);
+    }
+}
+
+@-webkit-keyframes slideOutY {
+    0% {
+        opacity: 1;
+        -webkit-transform: scaleY(1);
+        transform: scaleY(1);
+    }
+
+    100% {
+        opacity: 0;
+        -webkit-transform: scaleY(0);
+        transform: scaleY(0);
+    }
+}
